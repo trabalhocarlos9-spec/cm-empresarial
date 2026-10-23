@@ -1,0 +1,37 @@
+CM EMPRESARIAL — versão inicial com Supabase
+
+IMPORTANTE
+- Esta versão usa a URL do projeto e a Publishable key (ou a chave anon pública antiga) no navegador.
+- Nunca use Secret key, service_role ou senha do banco no aplicativo.
+- O arquivo index.html sozinho, aberto como arquivo local em cada aparelho, NÃO garante sincronização. Para sincronizar celular e computador, publique a pasta em um endereço HTTPS e entre com o mesmo usuário Supabase nos dois aparelhos.
+- O app ainda precisa ser testado com o seu projeto. Não considere os registros financeiros oficiais até confirmar que login, permissões e gravação funcionam.
+
+COMO CONFIGURAR
+1. Abra index.html no navegador para uma primeira conferência.
+2. Cole a Project URL e a Publishable key na tela de conexão.
+3. Entre com o usuário Supabase já confirmado.
+4. Se ocorrer erro de permissão, execute o SQL abaixo no SQL Editor do projeto CM EMPRESARIAL (não no projeto CM Jornal do Esporte).
+
+SQL DE PERMISSÕES (executar somente no projeto CM EMPRESARIAL)
+GRANT USAGE ON SCHEMA public TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.empresas TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.movimentos_caixa TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.vendas TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.produtos_estoque TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE public.clientes TO authenticated;
+
+SEGURANÇA
+As tabelas devem continuar com RLS habilitado. As políticas atuais do projeto devem permitir apenas ao usuário autorizado acessar as linhas. Teste a leitura e a gravação; se houver erro, não desative RLS para contornar o problema.
+
+DADOS EXISTENTES
+- O saldo físico informado para CroCrunch é R$ 171,90.
+- A venda/entrada de R$ 60,00 dos 20 pacotes já está incluída nesse saldo. NÃO lance esses R$ 60,00 novamente.
+- O app não insere automaticamente saldo inicial, para evitar duplicidade. Quando estiver conectado e testado, registre o saldo inicial uma única vez como entrada de caixa, com descrição “Saldo inicial conferido em 23/10/2026”, apenas se não houver outras movimentações já lançadas para essa empresa. Para manter o valor físico fiel, confira também se as entradas e saídas registradas representam o dinheiro que realmente está no caixa.
+
+LIMITAÇÕES DESTA PRIMEIRA VERSÃO
+- Interface responsiva para celular/computador.
+- Login por e-mail e senha Supabase.
+- Empresa selecionável: CroCrunch ou CARLÃO Display Center.
+- Caixa, vendas, estoque e clientes básicos.
+- Vendas com status “Pago” geram automaticamente uma entrada no caixa. Vendas pendentes não geram entrada.
+- Ainda não há edição/exclusão de registros, relatórios avançados, nem baixa automática de estoque.
