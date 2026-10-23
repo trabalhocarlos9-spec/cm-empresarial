@@ -1,0 +1,7 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#111111"/>
+  <text x="256" y="235" font-size="150" font-family="Arial,sans-serif" font-weight="bold" text-anchor="middle" fill="#f5c542">CM</text>
+  <path d="M110 280 H402" stroke="#f5c542" stroke-width="12"/>
+  <text x="256" y="345" font-size="48" font-family="Arial,sans-serif" font-weight="bold" text-anchor="middle" fill="#ffffff">EMPRESARIAL</text>
+</svg>
